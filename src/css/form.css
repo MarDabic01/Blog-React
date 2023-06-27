@@ -1,0 +1,32 @@
+.form {
+    width: 100%;
+}
+
+.form-input {
+    border: 1px solid #B3B3B3;
+    padding: 2% 3% 2% 3%;
+    border-radius: 25px;
+    margin-top: 1%;
+}
+
+.form-button {
+    background-color: #011D26;
+    color: white;
+    margin-top: 3%;
+    padding:3%;
+    border-radius: 25px;
+    transition: 0.5s;
+}
+    .form-button:enabled:hover {
+        transform: scale(1.05);
+        transition: 0.5s;
+    }
+    .form-button:disabled {
+        background-color: #B3B3B3;
+        transition: 0.5s;
+    }
+
+.validation-message {
+    font-size: 90%;
+    color: red;
+}
