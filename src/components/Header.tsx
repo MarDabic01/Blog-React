@@ -5,6 +5,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Show,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import "../css/header.css";
@@ -19,17 +20,19 @@ const Header = () => {
         <Image src={logo} boxSize="50px" />
       </HStack>
       <HStack w="50%" justifyContent="flex-end" gap={2}>
-        <InputGroup w="50%" justifyContent="flex-end">
-          <Input
-            placeholder="Pretrazujte"
-            w="50%"
-            borderRadius="25px"
-            className="header-input"
-          />
-          <InputRightElement>
-            <SearchIcon color="gray.300" />
-          </InputRightElement>
-        </InputGroup>
+        <Show breakpoint="(min-width: 800px)">
+          <InputGroup w="50%" justifyContent="flex-end">
+            <Input
+              placeholder="Pretrazujte"
+              w="50%"
+              borderRadius="25px"
+              className="header-input"
+            />
+            <InputRightElement>
+              <SearchIcon color="gray.300" />
+            </InputRightElement>
+          </InputGroup>
+        </Show>
         <Button
           bg="#011D26"
           color="white"
