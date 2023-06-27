@@ -1,15 +1,15 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import schema, { FormData } from "../validation/registerValidationScheme";
-import UserRegister from "../entities/UserRegister";
+import schema, { FormData } from "../validation/loginValidationScheme";
 import "../css/general.css";
 import "../css/form.css";
 import userService from "../service/user-service";
 import { useState } from "react";
+import UserLogin from "../entities/UserLogin";
 import { Link } from "react-router-dom";
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -21,12 +21,11 @@ const RegisterForm = () => {
   const [error, setError] = useState();
 
   const onSubmit = (data: FieldValues) => {
-    const newUser: UserRegister = {
-      username: data.username,
+    const user: UserLogin = {
       email: data.email,
       password: data.password,
     };
-    userService.createUser(newUser).catch((err) => setError(err.message));
+    userService.authenticateUser(user).catch((err) => setError(err.message));
     reset();
   };
 
@@ -41,28 +40,14 @@ const RegisterForm = () => {
     >
       {error && <label className="validation-message">{error}</label>}
       <Text fontSize={20} fontWeight="bold" marginBottom={3}>
-        Registracija
+        Prijava
       </Text>
-      <Text textAlign="center">
+      <Text textAlign="center" marginBottom={5}>
         Dobrodosli na portal Blog4Info. Ostavite svoje podatke kako biste se
-        registrovali.
+        prijavili.
       </Text>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <Flex flexDirection="column">
-          <div className="flex-dir-col">
-            <label>Korisnicko ime*</label>
-            <input
-              {...register("username")}
-              type="text"
-              className="form-input"
-              placeholder="User123"
-            />
-            {errors.username && (
-              <label className="validation-message">
-                {errors.username.message}
-              </label>
-            )}
-          </div>
           <div className="flex-dir-col">
             <label>Email adresa*</label>
             <input
@@ -92,34 +77,21 @@ const RegisterForm = () => {
               </label>
             )}
           </div>
-          <div className="flex-dir-col">
-            <label>Potvrdi lozinku*</label>
-            <input
-              {...register("confirmPassword")}
-              type="password"
-              className="form-input"
-              placeholder="*********"
-              autoComplete="false"
-            />
-            {errors.confirmPassword && (
-              <label className="validation-message">
-                {errors.confirmPassword.message}
-              </label>
-            )}
-          </div>
           <button disabled={!isValid} className="form-button">
-            Registrujte se
+            Prijavite se
           </button>
+          <Link to="/register">
+            <button type="button" className="form-button">
+              Registrujte se
+            </button>
+          </Link>
         </Flex>
       </form>
-      <span>
-        Imate nalog?{" "}
-        <Link to="/login" className="form-link">
-          Prijavite se
-        </Link>
-      </span>
+      <Link to="/" className="form-link">
+        Zaboravili ste lozinku?
+      </Link>
     </Flex>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
