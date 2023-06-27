@@ -1,4 +1,4 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import schema, { FormData } from "../validation/loginValidationScheme";
@@ -7,6 +7,7 @@ import "../css/form.css";
 import userService from "../service/user-service";
 import { useState } from "react";
 import UserLogin from "../entities/UserLogin";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const {
@@ -79,12 +80,16 @@ const LoginForm = () => {
           <button disabled={!isValid} className="form-button">
             Prijavite se
           </button>
-          <button type="button" className="form-button">
-            Registrujte se
-          </button>
+          <Link to="/register">
+            <button type="button" className="form-button">
+              Registrujte se
+            </button>
+          </Link>
         </Flex>
       </form>
-      <Link color="blue.400">Zaboravili ste lozinku?</Link>
+      <Link to="/" className="form-link">
+        Zaboravili ste lozinku?
+      </Link>
     </Flex>
   );
 };

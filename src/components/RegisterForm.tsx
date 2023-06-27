@@ -1,4 +1,4 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import schema, { FormData } from "../validation/registerValidationScheme";
@@ -7,6 +7,7 @@ import "../css/general.css";
 import "../css/form.css";
 import userService from "../service/user-service";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const {
@@ -112,7 +113,10 @@ const RegisterForm = () => {
         </Flex>
       </form>
       <span>
-        Imate nalog? <Link color="blue.400">Prijavite se</Link>
+        Imate nalog?{" "}
+        <Link to="/login" className="form-link">
+          Prijavite se
+        </Link>
       </span>
     </Flex>
   );
