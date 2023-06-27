@@ -1,0 +1,16 @@
+.header-button {
+    transition: 0.3s;
+}
+    .header-button:hover {
+        transform: scale(1.05);
+        transition: 0.3s;
+        box-shadow: 1px 3px 3px 1px rgba(0,0,0,0.2);
+    }
+
+.header-input {
+    transition: 0.3s;
+}
+    .header-input:focus {
+        width: 70%;
+        transition: 0.3s;
+    }
