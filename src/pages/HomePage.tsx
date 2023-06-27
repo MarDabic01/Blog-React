@@ -1,6 +1,5 @@
 import { Grid, GridItem } from "@chakra-ui/layout";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const HomePage = () => {
   return (
@@ -9,9 +8,9 @@ const HomePage = () => {
         <Header />
       </GridItem>
       <GridItem area="main">Main</GridItem>
-      <GridItem area="footer">
+      {/* <GridItem area="footer">
         <Footer />
-      </GridItem>
+      </GridItem> */}
     </Grid>
   );
 };
