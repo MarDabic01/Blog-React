@@ -2,11 +2,11 @@ import { Flex, Link, Text } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import schema, { FormData } from "../validation/loginValidationScheme";
-import UserRegister from "../entities/UserRegister";
 import "../css/general.css";
 import "../css/form.css";
 import userService from "../service/user-service";
 import { useState } from "react";
+import UserLogin from "../entities/UserLogin";
 
 const LoginForm = () => {
   const {
@@ -20,12 +20,11 @@ const LoginForm = () => {
   const [error, setError] = useState();
 
   const onSubmit = (data: FieldValues) => {
-    const newUser: UserRegister = {
-      username: data.username,
+    const user: UserLogin = {
       email: data.email,
       password: data.password,
     };
-    userService.createUser(newUser).catch((err) => setError(err.message));
+    userService.authenticateUser(user).catch((err) => setError(err.message));
     reset();
   };
 
@@ -80,7 +79,9 @@ const LoginForm = () => {
           <button disabled={!isValid} className="form-button">
             Prijavite se
           </button>
-          <button className="form-button">Registrujte se</button>
+          <button type="button" className="form-button">
+            Registrujte se
+          </button>
         </Flex>
       </form>
       <Link color="blue.400">Zaboravili ste lozinku?</Link>
